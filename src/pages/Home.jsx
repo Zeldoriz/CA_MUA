@@ -62,7 +62,7 @@ const Home = () => {
   const returnNavHeader = () => {
     return (
       <div className={styles.mainLogo}>
-        <img src="src\assets\mainLogo.png" alt="" />
+        <img src="public\mainLogo.png" alt="" />
       </div>
     );
   };
@@ -88,10 +88,10 @@ const Home = () => {
                 </div>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img className="IG" src="src\assets\IGLogo.svg" alt="" />
+                    <img src="public\IGLogo.svg" alt="" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="src\assets\WhatsappLogo.svg" alt="" />
+                    <img src="public\WhatsappLogo.svg" alt="" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
@@ -103,12 +103,7 @@ const Home = () => {
           <>
             <div className={`${styles.mobileNavContainer} ${mobileNavOpacity}`}>
               {returnNavHeader()}
-              <img
-                className={styles.mobileNavBurger}
-                onClick={handleBurgerClick}
-                src="src\assets\navBurger.svg"
-                alt=""
-              />
+              <img className={styles.mobileNavBurger} onClick={handleBurgerClick} src="public\navBurger.svg" alt="" />
             </div>
 
             <div className={`${styles.mobileNavMenu} ${isMNMActive}`}>
@@ -156,10 +151,10 @@ const Home = () => {
               <div className={styles.mobileNavFooter}>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img className="IG" src="src\assets\IGLogo.svg" alt="" />
+                    <img src="public\IGLogo.svg" alt="" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="src\assets\WhatsappLogo.svg" alt="" />
+                    <img src="public\WhatsappLogo.svg" alt="" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
