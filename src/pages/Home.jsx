@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import Gallery from "../components/Gallery/Gallery";
 import styles from "./Home.module.css";
+import IGLogo from "../assets/IGLogo.svg";
+import WhatsappLogo from "../assets/WhatsappLogo.svg";
+import mainLogo from "../assets/mainLogo.png";
+import navBurger from "../assets/navBurger.svg";
 
 const Home = () => {
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 768px)").matches);
@@ -64,7 +68,7 @@ const Home = () => {
   const returnNavHeader = () => {
     return (
       <div className={styles.mainLogo}>
-        <img src="public/mainLogo.png" alt="" />
+        <img src={mainLogo} alt="Main Logo" />
       </div>
     );
   };
@@ -89,10 +93,10 @@ const Home = () => {
                 </div>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img src="public/IGLogo.svg" alt="" />
+                    <img src={IGLogo} alt="Instagram Logo" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="public/WhatsappLogo.svg" alt="" />
+                    <img src={WhatsappLogo} alt="Whatsapp Logo" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
@@ -103,7 +107,12 @@ const Home = () => {
           <>
             <div className={`${styles.mobileNavContainer} ${mobileNavOpacity}`}>
               {returnNavHeader()}
-              <img className={styles.mobileNavBurger} onClick={handleBurgerClick} src="public/navBurger.svg" alt="" />
+              <img
+                className={styles.mobileNavBurger}
+                onClick={handleBurgerClick}
+                src={navBurger}
+                alt="Navigation Burger"
+              />
             </div>
             <div className={`${styles.mobileNavMenu} ${isMNMActive}`}>
               <div className={styles.navList}>
@@ -150,10 +159,10 @@ const Home = () => {
               <div className={styles.mobileNavFooter}>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img src="public/IGLogo.svg" alt="" />
+                    <img src={IGLogo} alt="Instagram Logo" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="public/WhatsappLogo.svg" alt="" />
+                    <img src={WhatsappLogo} alt="Whatsapp Logo" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
