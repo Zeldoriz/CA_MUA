@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import Gallery from "../components/Gallery/Gallery";
 import styles from "./Home.module.css";
-import IGLogo from "../assets/IGLogo.svg";
-import WhatsappLogo from "../assets/WhatsappLogo.svg";
-import mainLogo from "../assets/mainLogo.png";
-import navBurger from "../assets/navBurger.svg";
+import IGLogo from "../../public/IGLogo.svg";
+import WhatsappLogo from "../../public/WhatsappLogo.svg";
+import mainLogo from "../../public/mainLogo.png";
+import navBurger from "../../public/navBurger.svg";
 
 const Home = () => {
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 768px)").matches);
