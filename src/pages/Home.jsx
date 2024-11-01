@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Gallery from "../components/Gallery/Gallery";
 import styles from "./Home.module.css";
 
@@ -11,7 +11,7 @@ const Home = () => {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  const [dir, setDir] = useState(() => import.meta.glob(`../assets/gallery/casual/*.{jpg,jpeg,png}`));
+  const [dir, setDir] = useState(() => import.meta.glob(`../assets/gallery/casual/*.{jpg,jpeg,png,webp}`));
   const [galleryImages, setGalleryImages] = useState([]);
   const [imageCache, setImageCache] = useState({});
 
@@ -33,33 +33,33 @@ const Home = () => {
     loadImages();
   }, [dir, imageCache]);
 
-  const handleGallerySwap = (activeGallery) => {
+  const handleGallerySwap = useCallback((activeGallery) => {
     let newDir;
     switch (activeGallery) {
       case "glam":
-        newDir = import.meta.glob(`../assets/gallery/glam/*.{jpg,jpeg,png}`);
+        newDir = import.meta.glob(`../assets/gallery/glam/*.{jpg,jpeg,pn,webp}`);
         break;
       case "graduation":
-        newDir = import.meta.glob(`../assets/gallery/graduation/*.{jpg,jpeg,png}`);
+        newDir = import.meta.glob(`../assets/gallery/graduation/*.{jpg,jpeg,png,webp}`);
         break;
       case "party":
-        newDir = import.meta.glob(`../assets/gallery/party/*.{jpg,jpeg,png}`);
+        newDir = import.meta.glob(`../assets/gallery/party/*.{jpg,jpeg,png,webp}`);
         break;
       case "casual":
       default:
-        newDir = import.meta.glob(`../assets/gallery/casual/*.{jpg,jpeg,png}`);
+        newDir = import.meta.glob(`../assets/gallery/casual/*.{jpg,jpeg,png,webp}`);
     }
     setDir(newDir);
-  };
+  }, []);
 
   const [isMNMActive, setIsMNMActive] = useState(`${styles.MNMhidden}`);
   const [mobileNavOpacity, setMobileNavOpacity] = useState(`${styles.mobileNavTrans}`);
-  const handleBurgerClick = () => {
+  const handleBurgerClick = useCallback(() => {
     setIsMNMActive(isMNMActive === `${styles.MNMhidden}` ? `${styles.MNMactive}` : `${styles.MNMhidden}`);
     setMobileNavOpacity(
       mobileNavOpacity === `${styles.mobileNavTrans}` ? `${styles.mobileNavOpaque}` : `${styles.mobileNavTrans}`
     );
-  };
+  }, [isMNMActive, mobileNavOpacity]);
 
   const returnNavHeader = () => {
     return (
