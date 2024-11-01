@@ -13,7 +13,7 @@ const Gallery = ({ images }) => {
   return (
     <>
       {galleryImages.map((img, index) => (
-        <img className={styles.galleryImages} key={index} src={img} alt="image" />
+        <img className={styles.galleryImages} key={index} src={img} alt="image" loading="lazy" />
       ))}
     </>
   );
