@@ -1,33 +1,37 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Gallery from "../components/Gallery/Gallery";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  // Media Queries
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 768px)").matches);
   useEffect(() => {
-    window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => setMatches(e.matches));
-    return () => {
-      window.matchMedia("(min-width: 768px)").removeEventListener("change", (e) => setMatches(e.matches));
-    };
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const handleChange = (e) => setMatches(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
-  // ----------------
 
   const [dir, setDir] = useState(() => import.meta.glob(`../assets/gallery/casual/*.{jpg,jpeg,png}`));
   const [galleryImages, setGalleryImages] = useState([]);
+  const [imageCache, setImageCache] = useState({});
 
   useEffect(() => {
     const loadImages = async () => {
-      const images = [];
-      for (const img in dir) {
-        const data = await dir[img]();
-        images.push(data.default);
-      }
-      setGalleryImages(images);
+      const imagePromises = Object.keys(dir).map(async (img) => {
+        if (imageCache[img]) {
+          return imageCache[img];
+        } else {
+          const data = await dir[img]();
+          const imageUrl = data.default;
+          setImageCache((prevCache) => ({ ...prevCache, [img]: imageUrl }));
+          return imageUrl;
+        }
+      });
+      const loadedImages = await Promise.all(imagePromises);
+      setGalleryImages(loadedImages);
     };
     loadImages();
-  }, [dir]);
+  }, [dir, imageCache]);
 
   const handleGallerySwap = (activeGallery) => {
     let newDir;
@@ -52,17 +56,15 @@ const Home = () => {
   const [mobileNavOpacity, setMobileNavOpacity] = useState(`${styles.mobileNavTrans}`);
   const handleBurgerClick = () => {
     setIsMNMActive(isMNMActive === `${styles.MNMhidden}` ? `${styles.MNMactive}` : `${styles.MNMhidden}`);
-
     setMobileNavOpacity(
       mobileNavOpacity === `${styles.mobileNavTrans}` ? `${styles.mobileNavOpaque}` : `${styles.mobileNavTrans}`
     );
   };
 
-  // HTML Functions
   const returnNavHeader = () => {
     return (
       <div className={styles.mainLogo}>
-        <img src="public\mainLogo.png" alt="" />
+        <img src="public/mainLogo.png" alt="" />
       </div>
     );
   };
@@ -71,7 +73,6 @@ const Home = () => {
     <>
       <div className={styles.homeContainer}>
         {matches ? (
-          // Desktop
           <div className={styles.navContainer}>
             <div className={styles.navInnerContainer}>
               {returnNavHeader()}
@@ -88,10 +89,10 @@ const Home = () => {
                 </div>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img src="public\IGLogo.svg" alt="" />
+                    <img src="public/IGLogo.svg" alt="" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="public\WhatsappLogo.svg" alt="" />
+                    <img src="public/WhatsappLogo.svg" alt="" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
@@ -99,13 +100,11 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          // Mobile
           <>
             <div className={`${styles.mobileNavContainer} ${mobileNavOpacity}`}>
               {returnNavHeader()}
-              <img className={styles.mobileNavBurger} onClick={handleBurgerClick} src="public\navBurger.svg" alt="" />
+              <img className={styles.mobileNavBurger} onClick={handleBurgerClick} src="public/navBurger.svg" alt="" />
             </div>
-
             <div className={`${styles.mobileNavMenu} ${isMNMActive}`}>
               <div className={styles.navList}>
                 <ul>
@@ -151,10 +150,10 @@ const Home = () => {
               <div className={styles.mobileNavFooter}>
                 <div className={styles.navContactLinks}>
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
-                    <img src="public\IGLogo.svg" alt="" />
+                    <img src="public/IGLogo.svg" alt="" />
                   </a>
                   <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
-                    <img src="public\WhatsappLogo.svg" alt="" />
+                    <img src="public/WhatsappLogo.svg" alt="" />
                   </a>
                 </div>
                 <div className={styles.navFooter}>Copyright @ All rights reserved.</div>
