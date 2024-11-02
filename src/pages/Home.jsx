@@ -95,7 +95,7 @@ const Home = () => {
                   <a href="https://www.instagram.com/chikaargata.mua?igsh=MXF6YmdidGpvdHQxcA==" target="blank">
                     <img src={IGLogo} alt="Instagram Logo" />
                   </a>
-                  <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6282288489132&e=AT346qOFWuuehmiSMTlg7RzhZMUHblURfjNG-H5r5AGs7O9JZZY8fp5UJ2MGg2MAU1w25APGYBCBaQrM2GcrYPBmbZeFIaOz">
+                  <a href="https://wa.me/6282288489132">
                     <img src={WhatsappLogo} alt="Whatsapp Logo" />
                   </a>
                 </div>
