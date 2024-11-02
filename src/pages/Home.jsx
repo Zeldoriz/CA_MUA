@@ -41,7 +41,7 @@ const Home = () => {
     let newDir;
     switch (activeGallery) {
       case "glam":
-        newDir = import.meta.glob(`../assets/gallery/glam/*.{jpg,jpeg,pn,webp}`);
+        newDir = import.meta.glob(`../assets/gallery/glam/*.{jpg,jpeg,png,webp}`);
         break;
       case "graduation":
         newDir = import.meta.glob(`../assets/gallery/graduation/*.{jpg,jpeg,png,webp}`);
